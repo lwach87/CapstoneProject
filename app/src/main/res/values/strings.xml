@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CapstoneProject</string>
+  <string name="magnitude">Magnitude:\u0020</string>
+  <string name="magnitude_type">Magnitude type:\u0020</string>
+  <string name="significance">Significance:\u0020</string>
+  <string name="alert">Alert:\u0020</string>
 </resources>
