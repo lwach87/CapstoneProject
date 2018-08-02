@@ -6,7 +6,7 @@ import java.util.List;
 public class Geometry {
 
   @SerializedName("coordinates")
-  public List<Double> coordinates = null;
+  public List<Double> coordinates;
 
   public List<Double> getCoordinates() {
     return coordinates;
