@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:card_view="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:foreground="?android:selectableItemBackground"
   android:minHeight="128dp"
-  app:cardCornerRadius="8dp">
+  card_view:cardCornerRadius="8dp"
+  card_view:cardUseCompatPadding="true">
 
   <android.support.constraint.ConstraintLayout
     android:layout_width="match_parent"
@@ -21,9 +22,9 @@
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
+      card_view:layout_constraintEnd_toEndOf="parent"
+      card_view:layout_constraintStart_toStartOf="parent"
+      card_view:layout_constraintTop_toTopOf="parent"
       tools:text="Place"/>
 
     <TextView
@@ -32,8 +33,8 @@
       android:layout_height="wrap_content"
       android:text="@string/magnitude"
       android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/text_view_place"
+      card_view:layout_constraintStart_toStartOf="parent"
+      card_view:layout_constraintTop_toBottomOf="@+id/text_view_place"
       />
 
     <TextView
@@ -41,8 +42,8 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-      app:layout_constraintStart_toEndOf="@+id/magnitude"
-      app:layout_constraintTop_toTopOf="@+id/magnitude"
+      card_view:layout_constraintStart_toEndOf="@+id/magnitude"
+      card_view:layout_constraintTop_toTopOf="@+id/magnitude"
       tools:text="mag"/>
 
     <TextView
@@ -50,8 +51,8 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/text_view_place"
+      card_view:layout_constraintEnd_toEndOf="parent"
+      card_view:layout_constraintTop_toBottomOf="@+id/text_view_place"
       tools:text="date"/>
 
     <TextView
@@ -60,16 +61,16 @@
       android:layout_height="wrap_content"
       android:text="@string/magnitude_type"
       android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/magnitude"/>
+      card_view:layout_constraintStart_toStartOf="parent"
+      card_view:layout_constraintTop_toBottomOf="@+id/magnitude"/>
 
     <TextView
       android:id="@+id/text_view_magType"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-      app:layout_constraintStart_toEndOf="@+id/magType"
-      app:layout_constraintTop_toTopOf="@+id/magType"
+      card_view:layout_constraintStart_toEndOf="@+id/magType"
+      card_view:layout_constraintTop_toTopOf="@+id/magType"
       tools:text="mag_type"/>
 
     <TextView
@@ -78,16 +79,16 @@
       android:layout_height="wrap_content"
       android:text="@string/significance"
       android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/magType"/>
+      card_view:layout_constraintStart_toStartOf="parent"
+      card_view:layout_constraintTop_toBottomOf="@+id/magType"/>
 
     <TextView
       android:id="@+id/text_view_significance"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-      app:layout_constraintStart_toEndOf="@+id/significance"
-      app:layout_constraintTop_toTopOf="@+id/significance"
+      card_view:layout_constraintStart_toEndOf="@+id/significance"
+      card_view:layout_constraintTop_toTopOf="@+id/significance"
       tools:text="sig"/>
 
     <TextView
@@ -96,18 +97,17 @@
       android:layout_height="wrap_content"
       android:text="@string/alert"
       android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/significance"/>
+      card_view:layout_constraintStart_toStartOf="parent"
+      card_view:layout_constraintTop_toBottomOf="@+id/significance"/>
 
     <TextView
       android:id="@+id/text_view_alert"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-      app:layout_constraintStart_toEndOf="@+id/alert"
-      app:layout_constraintTop_toTopOf="@+id/alert"
+      card_view:layout_constraintStart_toEndOf="@+id/alert"
+      card_view:layout_constraintTop_toTopOf="@+id/alert"
       tools:text="alert"/>
 
   </android.support.constraint.ConstraintLayout>
-
 </android.support.v7.widget.CardView>

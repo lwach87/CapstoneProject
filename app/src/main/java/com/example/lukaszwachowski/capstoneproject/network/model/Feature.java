@@ -9,39 +9,21 @@ import com.google.gson.annotations.SerializedName;
 public class Feature {
 
   @PrimaryKey(autoGenerate = true)
-  public int id;
+  public int databaseId;
 
   @Embedded
-  @SerializedName("properties")
   public Properties properties;
 
   @Embedded
-  @SerializedName("geometry")
   public Geometry geometry;
 
   @SerializedName("id")
   public String apiId;
 
-  public Feature(int id, Properties properties, Geometry geometry, String apiId) {
-    this.id = id;
+  public Feature(int databaseId, Properties properties, Geometry geometry, String apiId) {
+    this.databaseId = databaseId;
     this.properties = properties;
     this.geometry = geometry;
     this.apiId = apiId;
-  }
-
-  public int getId() {
-    return id;
-  }
-
-  public Properties getProperties() {
-    return properties;
-  }
-
-  public Geometry getGeometry() {
-    return geometry;
-  }
-
-  public String getApiId() {
-    return apiId;
   }
 }

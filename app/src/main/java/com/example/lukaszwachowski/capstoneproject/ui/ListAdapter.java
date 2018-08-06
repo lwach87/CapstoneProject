@@ -12,13 +12,14 @@ import butterknife.ButterKnife;
 import com.example.lukaszwachowski.capstoneproject.R;
 import com.example.lukaszwachowski.capstoneproject.network.model.Feature;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.DataViewHolder> {
 
-  private List<Feature> features;
+  private List<Feature> features = new ArrayList<>();
   private Context context;
 
   public ListAdapter(Context context) {
@@ -83,8 +84,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.DataViewHolder
     }
   }
 
-  public void swapData(Feature feature) {
-    features.add(feature);
+  public void swapData(List<Feature> feature) {
+    features.addAll(feature);
     notifyDataSetChanged();
   }
 }
