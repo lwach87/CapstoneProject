@@ -7,7 +7,7 @@ import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.List;
 
-public class DataConverter {
+public class CoordinatesConverter {
 
   @TypeConverter
   public static List<Double> stringToCoordinates(String data) {

@@ -44,8 +44,8 @@ public class Repository {
     return modelDao.getFeatures();
   }
 
-  public Single<Feature> getFeatureById(String apiId) {
-    return modelDao.getFeatureById(apiId);
+  public Single<Feature> getFeatureById(String id) {
+    return modelDao.getFeatureById(id);
   }
 
   public void deleteFeature(Feature feature) {

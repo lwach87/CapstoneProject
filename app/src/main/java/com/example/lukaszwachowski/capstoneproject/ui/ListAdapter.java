@@ -2,6 +2,7 @@ package com.example.lukaszwachowski.capstoneproject.ui;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.example.lukaszwachowski.capstoneproject.R;
+import com.example.lukaszwachowski.capstoneproject.helper.FeatureDiffUtil;
 import com.example.lukaszwachowski.capstoneproject.network.model.Feature;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -84,8 +86,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.DataViewHolder
     }
   }
 
-  public void swapData(List<Feature> feature) {
-    features.addAll(feature);
-    notifyDataSetChanged();
+  public void swapData(List<Feature> newList) {
+    DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new FeatureDiffUtil(features, newList));
+    features.clear();
+    features.addAll(newList);
+    diffResult.dispatchUpdatesTo(this);
   }
 }

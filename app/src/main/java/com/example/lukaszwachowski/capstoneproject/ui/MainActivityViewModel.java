@@ -1,6 +1,7 @@
 package com.example.lukaszwachowski.capstoneproject.ui;
 
 import android.arch.lifecycle.ViewModel;
+import android.util.Log;
 import com.example.lukaszwachowski.capstoneproject.db.Repository;
 import com.example.lukaszwachowski.capstoneproject.network.ModelService;
 import com.example.lukaszwachowski.capstoneproject.network.model.Feature;
@@ -25,7 +26,6 @@ public class MainActivityViewModel extends ViewModel {
   }
 
   public void getDataFromService() {
-
     disposable.add(service.getData()
         .concatMap(model -> Observable.fromIterable(model.features))
         .subscribeOn(Schedulers.io())

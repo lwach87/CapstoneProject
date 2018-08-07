@@ -6,7 +6,7 @@ import android.arch.persistence.room.TypeConverters;
 import com.example.lukaszwachowski.capstoneproject.network.model.Feature;
 
 @Database(entities = Feature.class, version = 1, exportSchema = false)
-@TypeConverters(DataConverter.class)
+@TypeConverters(CoordinatesConverter.class)
 public abstract class ModelDatabase extends RoomDatabase {
 
   public abstract ModelDao modelDao();

@@ -14,11 +14,11 @@ import java.util.List;
 @Dao
 public interface ModelDao {
 
-  @Query("SELECT * FROM feature")
+  @Query("SELECT * FROM feature ORDER BY time DESC")
   Flowable<List<Feature>> getFeatures();
 
-  @Query("SELECT * FROM feature WHERE apiId = :apiId")
-  Single<Feature> getFeatureById(String apiId);
+  @Query("SELECT * FROM feature WHERE id = :id")
+  Single<Feature> getFeatureById(String id);
 
   @Insert(onConflict = REPLACE)
   void insertFeature(Feature feature);
