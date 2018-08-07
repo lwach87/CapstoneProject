@@ -56,7 +56,7 @@
       tools:text="date"/>
 
     <TextView
-      android:id="@+id/magType"
+      android:id="@+id/mag_type"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="@string/magnitude_type"
@@ -65,12 +65,12 @@
       card_view:layout_constraintTop_toBottomOf="@+id/magnitude"/>
 
     <TextView
-      android:id="@+id/text_view_magType"
+      android:id="@+id/text_view_mag_type"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-      card_view:layout_constraintStart_toEndOf="@+id/magType"
-      card_view:layout_constraintTop_toTopOf="@+id/magType"
+      card_view:layout_constraintStart_toEndOf="@+id/mag_type"
+      card_view:layout_constraintTop_toTopOf="@+id/mag_type"
       tools:text="mag_type"/>
 
     <TextView
@@ -80,7 +80,7 @@
       android:text="@string/significance"
       android:textAppearance="@style/TextAppearance.AppCompat.Body1"
       card_view:layout_constraintStart_toStartOf="parent"
-      card_view:layout_constraintTop_toBottomOf="@+id/magType"/>
+      card_view:layout_constraintTop_toBottomOf="@+id/mag_type"/>
 
     <TextView
       android:id="@+id/text_view_significance"

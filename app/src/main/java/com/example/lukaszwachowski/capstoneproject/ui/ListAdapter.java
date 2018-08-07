@@ -40,7 +40,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.DataViewHolder
 
     holder.place.setText(features.get(position).properties.place);
     holder.magnitude.setText(String.valueOf(features.get(position).properties.mag));
-    holder.magType.setText(features.get(position).properties.magType);
+    holder.mag_type.setText(features.get(position).properties.magType);
     holder.significance.setText(String.valueOf(features.get(position).properties.sig));
 
 //    String mAlert = features.get(position).properties.alert;
@@ -68,8 +68,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.DataViewHolder
     @BindView(R.id.text_view_magnitude)
     TextView magnitude;
 
-    @BindView(R.id.text_view_magType)
-    TextView magType;
+    @BindView(R.id.text_view_mag_type)
+    TextView mag_type;
 
     @BindView(R.id.text_view_alert)
     TextView alert;
