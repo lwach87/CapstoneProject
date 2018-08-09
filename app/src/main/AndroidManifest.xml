@@ -22,6 +22,19 @@
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
+
+    <service
+      android:name=".network.DataSyncIntentService"
+      android:exported="false" />
+
+    <service
+      android:name=".network.DataJobService"
+      android:exported="false">
+      <intent-filter>
+        <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
+      </intent-filter>
+    </service>
+
   </application>
 
 </manifest>
