@@ -1,6 +1,7 @@
 package com.example.lukaszwachowski.capstoneproject.network.model;
 
 import android.arch.persistence.room.ColumnInfo;
+import com.google.gson.annotations.SerializedName;
 
 public class Properties {
 
@@ -8,7 +9,8 @@ public class Properties {
 
   public String place;
 
-  public long time;
+  @SerializedName("time")
+  public long date;
 
   public String url;
 
