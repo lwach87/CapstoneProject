@@ -48,10 +48,6 @@ public class MainActivity extends AppCompatActivity {
 
     viewModel = ViewModelProviders.of(this, factory).get(MainActivityViewModel.class);
 
-    if (savedInstanceState == null) {
-      viewModel.getDataFromService();
-    }
-
     getDataFromDatabase();
 
     recyclerView.setLayoutManager(new LinearLayoutManager(this));

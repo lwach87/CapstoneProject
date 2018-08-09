@@ -15,7 +15,6 @@ import com.example.lukaszwachowski.capstoneproject.helper.FeatureDiffUtil;
 import com.example.lukaszwachowski.capstoneproject.network.model.Feature;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -46,13 +45,13 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.DataViewHolder
 //    String mAlert = features.get(position).properties.alert;
     holder.alert.setText("none");
 
-    Long mTime = features.get(position).properties.time;
+    long mTime = features.get(position).properties.date;
     setDate(mTime, holder);
   }
 
-  private void setDate(Long mTime, DataViewHolder holder) {
+  private void setDate(long mTime, DataViewHolder holder) {
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-    holder.date.setText(sdf.format(new Date(mTime)));
+    holder.date.setText(sdf.format(mTime));
   }
 
   @Override
