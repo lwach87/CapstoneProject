@@ -1,29 +1,37 @@
 package com.example.lukaszwachowski.capstoneproject.di.modules;
 
-import com.example.lukaszwachowski.capstoneproject.di.MainActivityScope;
+import static com.example.lukaszwachowski.capstoneproject.helper.Constants.URL;
+
+import android.content.Context;
+import com.example.lukaszwachowski.capstoneproject.di.ApplicationScope;
 import com.example.lukaszwachowski.capstoneproject.network.ModelService;
+import com.example.lukaszwachowski.capstoneproject.network.NetworkDataSource;
 import dagger.Module;
 import dagger.Provides;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class ModelServiceModule {
 
   @Provides
-  @MainActivityScope
+  @ApplicationScope
   public Retrofit retrofit() {
     return new Retrofit.Builder()
-        .baseUrl("https://earthquake.usgs.gov")
-        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        .baseUrl(URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build();
   }
 
   @Provides
-  @MainActivityScope
+  @ApplicationScope
   public ModelService modelService(Retrofit retrofit) {
     return retrofit.create(ModelService.class);
+  }
+
+  @Provides
+  @ApplicationScope
+  public NetworkDataSource provideDataSource(ModelService service, Context context) {
+    return new NetworkDataSource(service, context);
   }
 }

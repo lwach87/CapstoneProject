@@ -6,6 +6,7 @@ import com.example.lukaszwachowski.capstoneproject.db.ModelDao;
 import com.example.lukaszwachowski.capstoneproject.db.ModelDatabase;
 import com.example.lukaszwachowski.capstoneproject.db.Repository;
 import com.example.lukaszwachowski.capstoneproject.di.ApplicationScope;
+import com.example.lukaszwachowski.capstoneproject.network.NetworkDataSource;
 import dagger.Module;
 import dagger.Provides;
 
@@ -27,7 +28,7 @@ public class DatabaseModule {
 
   @Provides
   @ApplicationScope
-  public Repository provideRepository(ModelDao modelDao) {
-    return new Repository(modelDao);
+  public Repository provideRepository(ModelDao modelDao, NetworkDataSource dataSource) {
+    return new Repository(modelDao, dataSource);
   }
 }
