@@ -8,7 +8,6 @@ import android.arch.persistence.room.Query;
 import com.example.lukaszwachowski.capstoneproject.network.model.Feature;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
-import java.util.Date;
 import java.util.List;
 
 @Dao

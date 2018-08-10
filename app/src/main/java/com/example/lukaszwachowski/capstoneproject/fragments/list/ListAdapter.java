@@ -1,6 +1,5 @@
-package com.example.lukaszwachowski.capstoneproject.ui;
+package com.example.lukaszwachowski.capstoneproject.fragments.list;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
@@ -21,16 +20,15 @@ import java.util.Locale;
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.DataViewHolder> {
 
   private List<Feature> features = new ArrayList<>();
-  private Context context;
 
-  public ListAdapter(Context context) {
-    this.context = context;
+  public ListAdapter() {
   }
 
   @NonNull
   @Override
   public ListAdapter.DataViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    View view = LayoutInflater.from(context).inflate(R.layout.single_data, parent, false);
+    View view = LayoutInflater.from(parent.getContext())
+        .inflate(R.layout.single_data, parent, false);
     return new DataViewHolder(view);
   }
 
