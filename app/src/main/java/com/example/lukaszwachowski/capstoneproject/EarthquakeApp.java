@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import com.example.lukaszwachowski.capstoneproject.di.components.ApplicationComponent;
 import com.example.lukaszwachowski.capstoneproject.di.components.DaggerApplicationComponent;
-import com.example.lukaszwachowski.capstoneproject.di.modules.ContextModule;
+import com.example.lukaszwachowski.capstoneproject.di.modules.DatabaseModule;
 
 public class EarthquakeApp extends Application {
 
@@ -19,7 +19,7 @@ public class EarthquakeApp extends Application {
     super.onCreate();
 
     component = DaggerApplicationComponent.builder()
-        .contextModule(new ContextModule(this))
+        .databaseModule(new DatabaseModule(this))
         .build();
   }
 

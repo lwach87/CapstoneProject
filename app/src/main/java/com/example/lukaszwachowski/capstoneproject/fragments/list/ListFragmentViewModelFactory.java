@@ -4,10 +4,10 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 import com.example.lukaszwachowski.capstoneproject.db.Repository;
-import com.example.lukaszwachowski.capstoneproject.di.ListFragmentScope;
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
-@ListFragmentScope
+@Singleton
 public class ListFragmentViewModelFactory implements ViewModelProvider.Factory {
 
   private Repository repository;

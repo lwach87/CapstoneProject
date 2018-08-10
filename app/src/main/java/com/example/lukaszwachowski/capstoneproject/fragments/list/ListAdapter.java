@@ -16,11 +16,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
+@Singleton
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.DataViewHolder> {
 
   private List<Feature> features = new ArrayList<>();
 
+  @Inject
   public ListAdapter() {
   }
 

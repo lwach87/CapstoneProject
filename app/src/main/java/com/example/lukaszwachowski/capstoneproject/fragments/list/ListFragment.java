@@ -15,8 +15,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.example.lukaszwachowski.capstoneproject.EarthquakeApp;
 import com.example.lukaszwachowski.capstoneproject.R;
-import com.example.lukaszwachowski.capstoneproject.di.components.DaggerListFragmentComponent;
-import com.example.lukaszwachowski.capstoneproject.di.modules.ListFragmentModule;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -43,10 +41,7 @@ public class ListFragment extends Fragment {
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    DaggerListFragmentComponent.builder()
-        .listFragmentModule(new ListFragmentModule())
-        .applicationComponent(EarthquakeApp.get(getActivity()).getComponent())
-        .build().inject(this);
+    ((EarthquakeApp) getActivity().getApplication()).getComponent().inject(this);
 
     viewModel = ViewModelProviders.of(this, factory).get(ListFragmentViewModel.class);
     getDataFromDatabase();
