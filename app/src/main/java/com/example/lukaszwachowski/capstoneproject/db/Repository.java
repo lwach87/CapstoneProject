@@ -29,8 +29,7 @@ public class Repository {
   }
 
   /**
-   * Creates periodic sync tasks and checks to see if an immediate sync is required. If an immediate
-   * sync is required, this method will take care of making sure that sync occurs.
+   * Creates periodic sync tasks and starts an immediate sync.
    */
   private void initializeData() {
 

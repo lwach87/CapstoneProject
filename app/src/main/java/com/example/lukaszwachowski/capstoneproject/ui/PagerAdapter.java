@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.example.lukaszwachowski.capstoneproject.R;
 import com.example.lukaszwachowski.capstoneproject.fragments.DetailsFragment;
 import com.example.lukaszwachowski.capstoneproject.fragments.list.ListFragment;
-import com.example.lukaszwachowski.capstoneproject.fragments.MapFragment;
+import com.example.lukaszwachowski.capstoneproject.fragments.map.MapFragment;
 
 public class PagerAdapter extends FragmentPagerAdapter {
 

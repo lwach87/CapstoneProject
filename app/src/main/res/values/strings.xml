@@ -8,4 +8,8 @@
   <string name="action_map">Map</string>
   <string name="action_details">Details</string>
   <string name="action_list">Earthquakes</string>
+
+  <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
+        
+  </string>
 </resources>

@@ -1,5 +1,7 @@
 package com.example.lukaszwachowski.capstoneproject.di.modules;
 
+import static com.example.lukaszwachowski.capstoneproject.helper.Constants.DATABASE_NAME;
+
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import com.example.lukaszwachowski.capstoneproject.db.ModelDao;
@@ -28,7 +30,7 @@ public class DatabaseModule {
   @Provides
   @Singleton
   public ModelDatabase modelDatabase(Context context) {
-    return Room.databaseBuilder(context.getApplicationContext(), ModelDatabase.class, "features")
+    return Room.databaseBuilder(context, ModelDatabase.class, DATABASE_NAME)
         .build();
   }
 
