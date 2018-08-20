@@ -2,6 +2,7 @@ package com.example.lukaszwachowski.capstoneproject.di.components;
 
 import com.example.lukaszwachowski.capstoneproject.di.modules.DatabaseModule;
 import com.example.lukaszwachowski.capstoneproject.di.modules.ModelServiceModule;
+import com.example.lukaszwachowski.capstoneproject.fragments.details.DetailsFragment;
 import com.example.lukaszwachowski.capstoneproject.fragments.list.ListFragment;
 import com.example.lukaszwachowski.capstoneproject.fragments.map.MapFragment;
 import com.example.lukaszwachowski.capstoneproject.network.DataSyncIntentService;
@@ -17,4 +18,6 @@ public interface ApplicationComponent {
   void inject(ListFragment listFragment);
 
   void inject(MapFragment mapFragment);
+
+  void inject(DetailsFragment detailsFragment);
 }

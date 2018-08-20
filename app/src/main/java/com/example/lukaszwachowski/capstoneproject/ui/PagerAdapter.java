@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import com.example.lukaszwachowski.capstoneproject.R;
-import com.example.lukaszwachowski.capstoneproject.fragments.DetailsFragment;
+import com.example.lukaszwachowski.capstoneproject.fragments.details.DetailsFragment;
 import com.example.lukaszwachowski.capstoneproject.fragments.list.ListFragment;
 import com.example.lukaszwachowski.capstoneproject.fragments.map.MapFragment;
 

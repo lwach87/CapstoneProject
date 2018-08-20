@@ -1,11 +1,12 @@
 package com.example.lukaszwachowski.capstoneproject.db;
 
 import android.arch.lifecycle.LiveData;
-import com.example.lukaszwachowski.capstoneproject.helper.AppExecutors;
 import com.example.lukaszwachowski.capstoneproject.network.NetworkDataSource;
 import com.example.lukaszwachowski.capstoneproject.network.model.Feature;
+import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
+import io.reactivex.schedulers.Schedulers;
 import java.util.Calendar;
 import java.util.List;
 
@@ -21,11 +22,11 @@ public class Repository {
 
     LiveData<List<Feature>> results = dataSource.getCurrentFeatures();
     results.observeForever(
-        features -> AppExecutors.getInstance().diskIO()
-            .execute(() -> {
-              deleteOldData();
-              modelDao.insertFeatures(features);
-            }));
+        features -> Completable.fromAction(() -> {
+          deleteOldData();
+          modelDao.insertFeatures(features);
+        }).subscribeOn(Schedulers.io())
+            .subscribe());
   }
 
   /**
@@ -45,8 +46,9 @@ public class Repository {
     dataSource.scheduleRecurringFetchDataSync();
 
     //Starts an intent service which fetches the network data
-    AppExecutors.getInstance().diskIO()
-        .execute(() -> dataSource.startFetchService());
+    Completable.fromAction(() -> dataSource.startFetchService())
+        .subscribeOn(Schedulers.io())
+        .subscribe();
   }
 
   public Flowable<List<Feature>> getFeatures() {
