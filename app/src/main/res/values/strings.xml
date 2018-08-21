@@ -10,9 +10,11 @@
   <string name="action_list">Earthquakes</string>
 
   <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
-        
+
   </string>
   <string name="closest_to_you">Closest to you</string>
   <string name="distance">Distance:\u0020</string>
   <string name="kilometers">\u0020km</string>
+  <string name="properties">properties</string>
+  <string name="date">Date:\u0020</string>
 </resources>

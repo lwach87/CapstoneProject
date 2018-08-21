@@ -34,8 +34,7 @@
       android:text="@string/magnitude"
       android:textAppearance="@style/TextAppearance.AppCompat.Body1"
       card_view:layout_constraintStart_toStartOf="parent"
-      card_view:layout_constraintTop_toBottomOf="@+id/text_view_place"
-      />
+      card_view:layout_constraintTop_toBottomOf="@+id/text_view_place"/>
 
     <TextView
       android:id="@+id/text_view_magnitude"

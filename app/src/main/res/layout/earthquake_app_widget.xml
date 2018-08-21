@@ -1,0 +1,119 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/feature_widget_holder"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@android:color/background_light">
+
+  <TextView
+    android:id="@+id/widget_title"
+    android:textStyle="bold"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:gravity="center_horizontal"
+    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+    android:textSize="24sp"
+    tools:text="title"/>
+
+  <TextView
+    android:id="@+id/date"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/widget_title"
+    android:text="@string/date"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+    android:textSize="20sp"/>
+
+  <TextView
+    android:id="@+id/widget_date"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignTop="@id/date"
+    android:layout_toEndOf="@+id/date"
+    android:layout_toRightOf="@+id/date"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+    android:textSize="20sp"
+    tools:text="date"/>
+
+  <TextView
+    android:id="@+id/magnitude"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/date"
+    android:text="@string/magnitude"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+    android:textSize="20sp"/>
+
+  <TextView
+    android:id="@+id/widget_magnitude"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignTop="@id/magnitude"
+    android:layout_toEndOf="@+id/magnitude"
+    android:layout_toRightOf="@+id/magnitude"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+    android:textSize="20sp"
+    tools:text="magnitude"/>
+
+  <TextView
+    android:id="@+id/mag_type"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/magnitude"
+    android:text="@string/magnitude_type"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+    android:textSize="20sp"/>
+
+  <TextView
+    android:id="@+id/widget_magnitude_type"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignTop="@id/mag_type"
+    android:layout_toEndOf="@+id/mag_type"
+    android:layout_toRightOf="@+id/mag_type"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+    android:textSize="20sp"
+    tools:text="magnitude_type"/>
+
+  <TextView
+    android:id="@+id/significance"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/mag_type"
+    android:text="@string/significance"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+    android:textSize="20sp"/>
+
+  <TextView
+    android:id="@+id/widget_significance"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignTop="@id/significance"
+    android:layout_toEndOf="@+id/significance"
+    android:layout_toRightOf="@+id/significance"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+    android:textSize="20sp"
+    tools:text="significance"/>
+
+  <TextView
+    android:id="@+id/alert"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/significance"
+    android:text="@string/alert"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+    android:textSize="20sp"/>
+
+  <TextView
+    android:id="@+id/widget_alert"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignTop="@id/alert"
+    android:layout_toEndOf="@+id/alert"
+    android:layout_toRightOf="@+id/alert"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+    android:textSize="20sp"
+    tools:text="alert"/>
+</RelativeLayout>

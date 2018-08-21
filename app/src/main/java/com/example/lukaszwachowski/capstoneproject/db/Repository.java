@@ -65,7 +65,7 @@ public class Repository {
     modelDao.deleteFeature(pastDate.getTimeInMillis());
   }
 
-  public Single<Feature> getFeatureById(String id) {
-    return modelDao.getFeatureById(id);
+  public Single<Feature> getFeatureBySig() {
+    return modelDao.getFeatureBySig();
   }
 }

@@ -23,14 +23,11 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp"
     android:layout_marginStart="8dp"
     android:layout_marginLeft="8dp"
     android:text="@string/distance"
-    app:layout_constraintBottom_toTopOf="@+id/web_view"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/details_title"
-    app:layout_constraintVertical_bias="1.0"/>
+    app:layout_constraintTop_toBottomOf="@+id/details_title"/>
 
   <TextView
     android:id="@+id/text_view_distance"

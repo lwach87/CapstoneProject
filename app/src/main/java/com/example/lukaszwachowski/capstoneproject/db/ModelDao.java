@@ -16,8 +16,8 @@ public interface ModelDao {
   @Query("SELECT * FROM feature ORDER BY date DESC")
   Flowable<List<Feature>> getFeatures();
 
-  @Query("SELECT * FROM feature WHERE id = :id")
-  Single<Feature> getFeatureById(String id);
+  @Query("SELECT * FROM feature WHERE sig = (SELECT max(sig) FROM feature)")
+  Single<Feature> getFeatureBySig();
 
   @Insert(onConflict = REPLACE)
   void insertFeatures(List<Feature> features);
