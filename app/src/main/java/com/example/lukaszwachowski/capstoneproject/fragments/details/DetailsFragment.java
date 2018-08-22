@@ -3,13 +3,14 @@ package com.example.lukaszwachowski.capstoneproject.fragments.details;
 
 import static com.example.lukaszwachowski.capstoneproject.helper.Coordinates.distance;
 import static com.example.lukaszwachowski.capstoneproject.helper.ValueComparator.sortByValue;
+import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
-import android.Manifest;
 import android.Manifest.permission;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -25,11 +26,12 @@ import com.example.lukaszwachowski.capstoneproject.EarthquakeApp;
 import com.example.lukaszwachowski.capstoneproject.R;
 import com.example.lukaszwachowski.capstoneproject.fragments.CustomViewModelFactory;
 import com.example.lukaszwachowski.capstoneproject.network.model.Feature;
-import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.SettingsClient;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -42,7 +44,6 @@ public class DetailsFragment extends Fragment {
   @Inject
   CustomViewModelFactory factory;
 
-  private FusedLocationProviderClient fusedLocationProviderClient;
   private DetailsFragmentViewModel viewModel;
   private Map<String, Double> map = new HashMap<>();
   private CompositeDisposable disposable = new CompositeDisposable();
@@ -60,34 +61,47 @@ public class DetailsFragment extends Fragment {
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
-
     ((EarthquakeApp) getActivity().getApplication()).getComponent().inject(this);
 
     viewModel = ViewModelProviders.of(this, factory).get(DetailsFragmentViewModel.class);
+  }
 
-    if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+  @Override
+  public void onStart() {
+    super.onStart();
+
+    startLocationUpdates();
+  }
+
+  private void startLocationUpdates() {
+    LocationRequest locationRequest = new LocationRequest();
+    locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+    locationRequest.setInterval(10 * 1000);
+    locationRequest.setFastestInterval(2000);
+
+    LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
+    builder.addLocationRequest(locationRequest);
+    LocationSettingsRequest locationSettingsRequest = builder.build();
+
+    SettingsClient settingsClient = LocationServices.getSettingsClient(getContext());
+    settingsClient.checkLocationSettings(locationSettingsRequest);
+
+    if (ActivityCompat.checkSelfPermission(getContext(), permission.ACCESS_FINE_LOCATION)
         != PackageManager.PERMISSION_GRANTED) {
       ActivityCompat
           .requestPermissions(getActivity(), new String[]{permission.ACCESS_FINE_LOCATION}, 20);
       return;
     }
 
-    LocationRequest locationRequest = new LocationRequest();
-    locationRequest.setInterval(120000);
-    locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-
-    fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null);
+    getFusedLocationProviderClient(getContext())
+        .requestLocationUpdates(locationRequest, new LocationCallback() {
+          @Override
+          public void onLocationResult(LocationResult locationResult) {
+            Location location = locationResult.getLastLocation();
+            addDataToView(location.getLatitude(), location.getLongitude());
+          }
+        }, Looper.myLooper());
   }
-
-  LocationCallback locationCallback = new LocationCallback() {
-    @Override
-    public void onLocationResult(LocationResult locationResult) {
-      super.onLocationResult(locationResult);
-      Location location = locationResult.getLastLocation();
-      addDataToView(location.getLatitude(), location.getLongitude());
-    }
-  };
 
   private void addDataToView(double lat, double lon) {
     disposable.add(viewModel.getFeatures()
@@ -118,14 +132,6 @@ public class DetailsFragment extends Fragment {
     View view = inflater.inflate(R.layout.fragment_details, container, false);
     ButterKnife.bind(this, view);
     return view;
-  }
-
-  @Override
-  public void onPause() {
-    super.onPause();
-    if (fusedLocationProviderClient != null) {
-      fusedLocationProviderClient.removeLocationUpdates(locationCallback);
-    }
   }
 
   @Override

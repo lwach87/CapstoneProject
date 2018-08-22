@@ -17,4 +17,6 @@
   <string name="kilometers">\u0020km</string>
   <string name="properties">properties</string>
   <string name="date">Date:\u0020</string>
+  <string name="no_internet_connection">No internet connection!</string>
+  <string name="nullAlert">none</string>
 </resources>

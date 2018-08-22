@@ -1,6 +1,7 @@
 package com.example.lukaszwachowski.capstoneproject.ui;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -64,7 +65,9 @@ public class MainActivity extends AppCompatActivity {
     disposable.add(repository.getFeatureBySig()
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(feature -> WidgetService.startActionUpdateRecipeWidgets(this, feature)));
+        .subscribe(feature -> WidgetService.startActionUpdateRecipeWidgets(this, feature),
+            error -> Snackbar.make(rootView, error.getLocalizedMessage(), Snackbar.LENGTH_SHORT)
+        ));
   }
 
   @Override

@@ -1,6 +1,8 @@
 package com.example.lukaszwachowski.capstoneproject.fragments.list;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -23,15 +25,17 @@ import javax.inject.Singleton;
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.DataViewHolder> {
 
   private List<Feature> features = new ArrayList<>();
+  private Context context;
 
   @Inject
-  public ListAdapter() {
+  public ListAdapter(Context context) {
+    this.context = context;
   }
 
   @NonNull
   @Override
   public ListAdapter.DataViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    View view = LayoutInflater.from(parent.getContext())
+    View view = LayoutInflater.from(context)
         .inflate(R.layout.single_data, parent, false);
     return new DataViewHolder(view);
   }
@@ -44,8 +48,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.DataViewHolder
     holder.mag_type.setText(features.get(position).properties.magType);
     holder.significance.setText(String.valueOf(features.get(position).properties.sig));
 
-//    String mAlert = features.get(position).properties.alert;
-    holder.alert.setText("none");
+    String mAlert = features.get(position).properties.alert;
+    setAlert(mAlert, holder);
 
     long mTime = features.get(position).properties.date;
     setDate(mTime, holder);
@@ -54,6 +58,33 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.DataViewHolder
   private void setDate(long mTime, DataViewHolder holder) {
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
     holder.date.setText(sdf.format(mTime));
+  }
+
+  private void setAlert(String mAlert, DataViewHolder holder) {
+
+    if (mAlert == null) {
+      holder.alert.setText(R.string.nullAlert);
+      holder.alert.setTextColor(ContextCompat.getColor(context, R.color.grayAlert));
+    } else {
+      switch (mAlert) {
+        case "green":
+          holder.alert.setText(mAlert);
+          holder.alert.setTextColor(ContextCompat.getColor(context, R.color.greenAlert));
+          break;
+        case "yellow":
+          holder.alert.setText(mAlert);
+          holder.alert.setTextColor(ContextCompat.getColor(context, R.color.yellowAlert));
+          break;
+        case "orange":
+          holder.alert.setText(mAlert);
+          holder.alert.setTextColor(ContextCompat.getColor(context, R.color.orangeAlert));
+          break;
+        case "red":
+          holder.alert.setText(mAlert);
+          holder.alert.setTextColor(ContextCompat.getColor(context, R.color.redAlert));
+          break;
+      }
+    }
   }
 
   @Override
