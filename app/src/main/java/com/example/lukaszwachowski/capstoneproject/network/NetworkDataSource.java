@@ -9,6 +9,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.widget.Toast;
 import com.example.lukaszwachowski.capstoneproject.network.model.Feature;
 import com.example.lukaszwachowski.capstoneproject.network.model.Model;
 import com.firebase.jobdispatcher.Constraint;
@@ -22,7 +23,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import timber.log.Timber;
 
 public class NetworkDataSource {
 
@@ -81,7 +81,7 @@ public class NetworkDataSource {
 
       @Override
       public void onFailure(@NonNull Call<Model> call, @NonNull Throwable t) {
-        Timber.d(t.getLocalizedMessage());
+        Toast.makeText(context, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
       }
     });
   }
