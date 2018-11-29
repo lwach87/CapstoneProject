@@ -1,6 +1,5 @@
 package com.example.lukaszwachowski.capstoneproject.di.modules;
 
-import com.example.lukaszwachowski.capstoneproject.di.MainActivityScope;
 import com.example.lukaszwachowski.capstoneproject.ui.MainActivity;
 import com.example.lukaszwachowski.capstoneproject.ui.PagerAdapter;
 import dagger.Module;
@@ -16,7 +15,6 @@ public class MainActivityModule {
   }
 
   @Provides
-  @MainActivityScope
   public PagerAdapter pagerAdapter() {
     return new PagerAdapter(mainActivity, mainActivity.getSupportFragmentManager());
   }

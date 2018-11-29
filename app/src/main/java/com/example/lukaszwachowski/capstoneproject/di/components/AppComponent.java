@@ -12,7 +12,7 @@ import javax.inject.Singleton;
 
 @Singleton
 @Component(modules = {DatabaseModule.class, ModelServiceModule.class})
-public interface ApplicationComponent {
+public interface AppComponent {
 
   Repository getRepository();
 
