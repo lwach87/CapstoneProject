@@ -1,11 +1,11 @@
-package com.example.lukaszwachowski.capstoneproject.db;
+package com.example.lukaszwachowski.capstoneproject.data.local;
 
 import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
-import com.example.lukaszwachowski.capstoneproject.network.model.Feature;
+import com.example.lukaszwachowski.capstoneproject.data.model.Feature;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 import java.util.List;

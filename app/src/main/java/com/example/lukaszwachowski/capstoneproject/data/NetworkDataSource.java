@@ -1,4 +1,4 @@
-package com.example.lukaszwachowski.capstoneproject.network;
+package com.example.lukaszwachowski.capstoneproject.data;
 
 import static com.example.lukaszwachowski.capstoneproject.helper.Constants.DATA_TAG;
 import static com.example.lukaszwachowski.capstoneproject.helper.Constants.SYNC_FLEXTIME_SECONDS;
@@ -10,8 +10,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
-import com.example.lukaszwachowski.capstoneproject.network.model.Feature;
-import com.example.lukaszwachowski.capstoneproject.network.model.Model;
+import com.example.lukaszwachowski.capstoneproject.data.model.Feature;
+import com.example.lukaszwachowski.capstoneproject.data.model.Model;
+import com.example.lukaszwachowski.capstoneproject.data.remote.ApiHelper;
 import com.firebase.jobdispatcher.Constraint;
 import com.firebase.jobdispatcher.Driver;
 import com.firebase.jobdispatcher.FirebaseJobDispatcher;
@@ -26,12 +27,12 @@ import retrofit2.Response;
 
 public class NetworkDataSource {
 
-  private ModelService service;
+  private ApiHelper apiHelper;
   private Context context;
   private MutableLiveData<List<Feature>> results = new MutableLiveData<>();
 
-  public NetworkDataSource(ModelService service, Context context) {
-    this.service = service;
+  public NetworkDataSource(ApiHelper apiHelper, Context context) {
+    this.apiHelper = apiHelper;
     this.context = context;
   }
 
@@ -71,11 +72,11 @@ public class NetworkDataSource {
 
   public void getDataFromService() {
 
-    service.getData().enqueue(new Callback<Model>() {
+    apiHelper.getData().enqueue(new Callback<Model>() {
       @Override
       public void onResponse(@NonNull Call<Model> call, @NonNull Response<Model> response) {
         if (response.isSuccessful()) {
-          results.postValue(response.body().features);
+          results.postValue(response.body().getFeatures());
         }
       }
 

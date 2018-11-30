@@ -1,11 +1,10 @@
-package com.example.lukaszwachowski.capstoneproject.network;
+package com.example.lukaszwachowski.capstoneproject.data;
 
 import static com.example.lukaszwachowski.capstoneproject.helper.Constants.SYNC_SERVICE;
 
 import android.app.IntentService;
 import android.content.Intent;
 import android.support.annotation.Nullable;
-import com.example.lukaszwachowski.capstoneproject.EarthquakeApp;
 import javax.inject.Inject;
 
 public class DataSyncIntentService extends IntentService {
@@ -20,7 +19,7 @@ public class DataSyncIntentService extends IntentService {
   @Override
   public void onCreate() {
     super.onCreate();
-    ((EarthquakeApp) getApplication()).getComponent().inject(this);
+//    ((EarthquakeApp) getApplication()).getComponent().inject(this);
   }
 
   @Override

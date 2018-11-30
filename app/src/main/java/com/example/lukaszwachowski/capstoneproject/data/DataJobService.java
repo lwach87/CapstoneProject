@@ -1,4 +1,4 @@
-package com.example.lukaszwachowski.capstoneproject.network;
+package com.example.lukaszwachowski.capstoneproject.data;
 
 
 import com.firebase.jobdispatcher.JobParameters;

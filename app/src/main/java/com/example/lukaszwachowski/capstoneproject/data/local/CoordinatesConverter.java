@@ -1,4 +1,4 @@
-package com.example.lukaszwachowski.capstoneproject.db;
+package com.example.lukaszwachowski.capstoneproject.data.local;
 
 import android.arch.persistence.room.TypeConverter;
 import com.google.gson.Gson;
