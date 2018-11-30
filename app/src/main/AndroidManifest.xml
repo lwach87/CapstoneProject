@@ -27,11 +27,11 @@
 
     <service
       android:exported="false"
-      android:name=".network.DataSyncIntentService"/>
+      android:name=".data.DataSyncIntentService"/>
 
     <service
       android:exported="false"
-      android:name=".network.DataJobService">
+      android:name=".data.DataJobService">
       <intent-filter>
         <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
       </intent-filter>

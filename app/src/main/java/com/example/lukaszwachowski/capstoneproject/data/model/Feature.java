@@ -1,4 +1,4 @@
-package com.example.lukaszwachowski.capstoneproject.network.model;
+package com.example.lukaszwachowski.capstoneproject.data.model;
 
 import static com.example.lukaszwachowski.capstoneproject.helper.Constants.TABLE_NAME;
 
@@ -14,16 +14,41 @@ public class Feature implements Parcelable {
 
   @PrimaryKey
   @NonNull
-  public String id;
+  private String id;
 
   @Embedded
-  public Properties properties;
+  private Properties properties;
 
   @Embedded
-  public Geometry geometry;
+  private Geometry geometry;
 
   public Feature() {
 
+  }
+
+  @NonNull
+  public String getId() {
+    return id;
+  }
+
+  public void setId(@NonNull String id) {
+    this.id = id;
+  }
+
+  public Properties getProperties() {
+    return properties;
+  }
+
+  public void setProperties(Properties properties) {
+    this.properties = properties;
+  }
+
+  public Geometry getGeometry() {
+    return geometry;
+  }
+
+  public void setGeometry(Geometry geometry) {
+    this.geometry = geometry;
   }
 
   public Feature(Parcel in) {
