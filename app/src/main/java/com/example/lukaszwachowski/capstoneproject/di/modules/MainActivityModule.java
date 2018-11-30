@@ -8,14 +8,8 @@ import dagger.Provides;
 @Module
 public class MainActivityModule {
 
-  private MainActivity mainActivity;
-
-  public MainActivityModule(MainActivity mainActivity) {
-    this.mainActivity = mainActivity;
-  }
-
   @Provides
-  public PagerAdapter pagerAdapter() {
+  PagerAdapter pagerAdapter(MainActivity mainActivity) {
     return new PagerAdapter(mainActivity, mainActivity.getSupportFragmentManager());
   }
 }

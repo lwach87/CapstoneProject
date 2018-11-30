@@ -1,26 +1,27 @@
 package com.example.lukaszwachowski.capstoneproject.di.components;
 
-import com.example.lukaszwachowski.capstoneproject.db.Repository;
-import com.example.lukaszwachowski.capstoneproject.di.modules.DatabaseModule;
-import com.example.lukaszwachowski.capstoneproject.di.modules.ModelServiceModule;
-import com.example.lukaszwachowski.capstoneproject.fragments.details.DetailsFragment;
-import com.example.lukaszwachowski.capstoneproject.fragments.list.ListFragment;
-import com.example.lukaszwachowski.capstoneproject.fragments.map.MapFragment;
-import com.example.lukaszwachowski.capstoneproject.network.DataSyncIntentService;
+import android.app.Application;
+import com.example.lukaszwachowski.capstoneproject.EarthquakeApp;
+import com.example.lukaszwachowski.capstoneproject.di.builder.ActivityBuilder;
+import com.example.lukaszwachowski.capstoneproject.di.modules.AppModule;
+import dagger.BindsInstance;
 import dagger.Component;
+import dagger.android.AndroidInjectionModule;
 import javax.inject.Singleton;
 
 @Singleton
-@Component(modules = {DatabaseModule.class, ModelServiceModule.class})
+@Component(modules = {AndroidInjectionModule.class, AppModule.class, ActivityBuilder.class})
 public interface AppComponent {
 
-  Repository getRepository();
+  void inject(EarthquakeApp app);
 
-  void inject(DataSyncIntentService service);
+  @Component.Builder
+  interface Builder {
 
-  void inject(ListFragment listFragment);
+    @BindsInstance
+    Builder application(Application application);
 
-  void inject(MapFragment mapFragment);
+    AppComponent build();
+  }
 
-  void inject(DetailsFragment detailsFragment);
 }
