@@ -2,28 +2,40 @@ package com.example.lukaszwachowski.capstoneproject;
 
 import android.app.Activity;
 import android.app.Application;
-import com.example.lukaszwachowski.capstoneproject.di.components.ApplicationComponent;
-import com.example.lukaszwachowski.capstoneproject.di.components.DaggerApplicationComponent;
-import com.example.lukaszwachowski.capstoneproject.di.modules.DatabaseModule;
+import android.app.Service;
+import com.example.lukaszwachowski.capstoneproject.di.components.DaggerAppComponent;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasActivityInjector;
+import dagger.android.HasServiceInjector;
+import javax.inject.Inject;
 
-public class EarthquakeApp extends Application {
+public class EarthquakeApp extends Application implements HasActivityInjector, HasServiceInjector {
 
-  private ApplicationComponent component;
+  @Inject
+  DispatchingAndroidInjector<Activity> activityDispatchingAndroidInjector;
 
-  public static EarthquakeApp get(Activity activity) {
-    return (EarthquakeApp) activity.getApplication();
+  @Inject
+  DispatchingAndroidInjector<Service> serviceDispatchingAndroidInjector;
+
+  @Override
+  public AndroidInjector<Activity> activityInjector() {
+    return activityDispatchingAndroidInjector;
+  }
+
+  @Override
+  public AndroidInjector<Service> serviceInjector() {
+    return serviceDispatchingAndroidInjector;
   }
 
   @Override
   public void onCreate() {
     super.onCreate();
 
-    component = DaggerApplicationComponent.builder()
-        .databaseModule(new DatabaseModule(this))
-        .build();
-  }
-
-  public ApplicationComponent getComponent() {
-    return component;
+    DaggerAppComponent
+        .builder()
+        .application(this)
+        .build()
+        .inject(this);
   }
 }

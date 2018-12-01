@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name">CapstoneProject</string>
+  <string name="app_name">Earthquake app</string>
   <string name="magnitude">Magnitude:\u0020</string>
   <string name="magnitude_type">Magnitude type:\u0020</string>
   <string name="significance">Significance:\u0020</string>

@@ -17,7 +17,7 @@
     android:paddingEnd="16dp">
 
     <TextView
-      android:id="@+id/text_view_place"
+      android:id="@+id/tv_place"
       android:textStyle="bold"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
@@ -34,25 +34,25 @@
       android:text="@string/magnitude"
       android:textAppearance="@style/TextAppearance.AppCompat.Body1"
       card_view:layout_constraintStart_toStartOf="parent"
-      card_view:layout_constraintTop_toBottomOf="@+id/text_view_place"/>
+      card_view:layout_constraintTop_toBottomOf="@+id/tv_place"/>
 
     <TextView
-      android:id="@+id/text_view_magnitude"
+      android:id="@+id/tv_magnitude"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textAppearance="@style/TextAppearance.AppCompat.Body1"
       card_view:layout_constraintStart_toEndOf="@+id/magnitude"
       card_view:layout_constraintTop_toTopOf="@+id/magnitude"
-      tools:text="mag"/>
+      tools:text="5.0"/>
 
     <TextView
-      android:id="@+id/text_view_date"
+      android:id="@+id/tv_date"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textAppearance="@style/TextAppearance.AppCompat.Body1"
       card_view:layout_constraintEnd_toEndOf="parent"
-      card_view:layout_constraintTop_toBottomOf="@+id/text_view_place"
-      tools:text="date"/>
+      card_view:layout_constraintTop_toBottomOf="@+id/tv_place"
+      tools:text="13/11/1987"/>
 
     <TextView
       android:id="@+id/mag_type"
@@ -64,13 +64,13 @@
       card_view:layout_constraintTop_toBottomOf="@+id/magnitude"/>
 
     <TextView
-      android:id="@+id/text_view_mag_type"
+      android:id="@+id/tv_mag_type"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textAppearance="@style/TextAppearance.AppCompat.Body1"
       card_view:layout_constraintStart_toEndOf="@+id/mag_type"
       card_view:layout_constraintTop_toTopOf="@+id/mag_type"
-      tools:text="mag_type"/>
+      tools:text="ml"/>
 
     <TextView
       android:id="@+id/significance"
@@ -82,13 +82,13 @@
       card_view:layout_constraintTop_toBottomOf="@+id/mag_type"/>
 
     <TextView
-      android:id="@+id/text_view_significance"
+      android:id="@+id/tv_significance"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textAppearance="@style/TextAppearance.AppCompat.Body1"
       card_view:layout_constraintStart_toEndOf="@+id/significance"
       card_view:layout_constraintTop_toTopOf="@+id/significance"
-      tools:text="sig"/>
+      tools:text="540"/>
 
     <TextView
       android:id="@+id/alert"
@@ -100,13 +100,13 @@
       card_view:layout_constraintTop_toBottomOf="@+id/significance"/>
 
     <TextView
-      android:id="@+id/text_view_alert"
+      android:id="@+id/tv_alert"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textAppearance="@style/TextAppearance.AppCompat.Body1"
       card_view:layout_constraintStart_toEndOf="@+id/alert"
       card_view:layout_constraintTop_toTopOf="@+id/alert"
-      tools:text="alert"/>
+      tools:text="green"/>
 
   </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>
