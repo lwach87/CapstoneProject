@@ -1,4 +1,4 @@
-package com.example.lukaszwachowski.capstoneproject.fragments.details;
+package com.example.lukaszwachowski.capstoneproject.ui.details;
 
 
 import static com.example.lukaszwachowski.capstoneproject.helper.Coordinates.distance;
@@ -6,6 +6,7 @@ import static com.example.lukaszwachowski.capstoneproject.helper.ValueComparator
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
 import android.Manifest.permission;
+import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -22,16 +23,15 @@ import android.webkit.WebView;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.example.lukaszwachowski.capstoneproject.EarthquakeApp;
 import com.example.lukaszwachowski.capstoneproject.R;
-import com.example.lukaszwachowski.capstoneproject.fragments.CustomViewModelFactory;
-import com.example.lukaszwachowski.capstoneproject.network.model.Feature;
+import com.example.lukaszwachowski.capstoneproject.data.model.Feature;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.SettingsClient;
+import dagger.android.support.AndroidSupportInjection;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -42,13 +42,13 @@ import javax.inject.Inject;
 public class DetailsFragment extends Fragment {
 
   @Inject
-  CustomViewModelFactory factory;
+  ViewModelProvider.Factory factory;
 
   private DetailsFragmentViewModel viewModel;
   private Map<String, Double> map = new HashMap<>();
   private CompositeDisposable disposable = new CompositeDisposable();
 
-  @BindView(R.id.text_view_distance)
+  @BindView(R.id.tv_distance)
   TextView distance;
 
   @BindView(R.id.web_view)
@@ -61,7 +61,7 @@ public class DetailsFragment extends Fragment {
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    ((EarthquakeApp) getActivity().getApplication()).getComponent().inject(this);
+    AndroidSupportInjection.inject(this);
 
     viewModel = ViewModelProviders.of(this, factory).get(DetailsFragmentViewModel.class);
   }
@@ -109,8 +109,8 @@ public class DetailsFragment extends Fragment {
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(features -> {
           for (Feature feature : features) {
-            map.put(feature.id, distance(feature.geometry.coordinates.get(1),
-                feature.geometry.coordinates.get(0), lat, lon));
+            map.put(feature.getId(), distance(feature.getGeometry().getCoordinates().get(1),
+                feature.getGeometry().getCoordinates().get(0), lat, lon));
           }
           Map<String, Double> result = sortByValue(map);
           String[] array = String.valueOf(result.entrySet().iterator().next()).split("=");
@@ -118,9 +118,9 @@ public class DetailsFragment extends Fragment {
           distance.setText(String.valueOf((int) Double.parseDouble(array[1])));
 
           for (Feature feature : features) {
-            if (feature.id.equals(array[0])) {
+            if (feature.getId().equals(array[0])) {
               webView.getSettings().setLoadsImagesAutomatically(true);
-              webView.loadUrl(feature.properties.url);
+              webView.loadUrl(feature.getProperties().getUrl());
             }
           }
         }));

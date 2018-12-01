@@ -1,6 +1,6 @@
-package com.example.lukaszwachowski.capstoneproject.fragments.map;
+package com.example.lukaszwachowski.capstoneproject.ui.map;
 
-import com.example.lukaszwachowski.capstoneproject.network.model.Feature;
+import com.example.lukaszwachowski.capstoneproject.data.model.Feature;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.clustering.ClusterItem;
 
@@ -11,10 +11,10 @@ public class MarkerItem implements ClusterItem {
   private String snippet;
 
   public MarkerItem(Feature feature) {
-    this.position = new LatLng(feature.geometry.coordinates.get(1),
-        feature.geometry.coordinates.get(0));
-    this.title = feature.properties.place;
-    this.snippet = "Magnitude: " + feature.properties.mag;
+    this.position = new LatLng(feature.getGeometry().getCoordinates().get(1),
+        feature.getGeometry().getCoordinates().get(0));
+    this.title = feature.getProperties().getPlace();
+    this.snippet = "Magnitude: " + feature.getProperties().getMag();
   }
 
   @Override

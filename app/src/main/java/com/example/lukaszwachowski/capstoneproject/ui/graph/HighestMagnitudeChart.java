@@ -1,4 +1,4 @@
-package com.example.lukaszwachowski.capstoneproject.graph;
+package com.example.lukaszwachowski.capstoneproject.ui.graph;
 
 //public class HighestMagnitudeChart {
 //

@@ -1,4 +1,4 @@
-package com.example.lukaszwachowski.capstoneproject.fragments.list;
+package com.example.lukaszwachowski.capstoneproject.ui.list;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -12,22 +12,18 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.example.lukaszwachowski.capstoneproject.R;
+import com.example.lukaszwachowski.capstoneproject.data.model.Feature;
 import com.example.lukaszwachowski.capstoneproject.helper.FeatureDiffUtil;
-import com.example.lukaszwachowski.capstoneproject.network.model.Feature;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import javax.inject.Inject;
-import javax.inject.Singleton;
 
-@Singleton
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.DataViewHolder> {
 
   private List<Feature> features = new ArrayList<>();
   private Context context;
 
-  @Inject
   public ListAdapter(Context context) {
     this.context = context;
   }
@@ -43,15 +39,15 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.DataViewHolder
   @Override
   public void onBindViewHolder(@NonNull DataViewHolder holder, int position) {
 
-    holder.place.setText(features.get(position).properties.place);
-    holder.magnitude.setText(String.valueOf(features.get(position).properties.mag));
-    holder.mag_type.setText(features.get(position).properties.magType);
-    holder.significance.setText(String.valueOf(features.get(position).properties.sig));
+    holder.place.setText(features.get(position).getProperties().getPlace());
+    holder.magnitude.setText(String.valueOf(features.get(position).getProperties().getMag()));
+    holder.mag_type.setText(features.get(position).getProperties().getMagType());
+    holder.significance.setText(String.valueOf(features.get(position).getProperties().getSig()));
 
-    String mAlert = features.get(position).properties.alert;
+    String mAlert = features.get(position).getProperties().getAlert();
     setAlert(mAlert, holder);
 
-    long mTime = features.get(position).properties.date;
+    long mTime = features.get(position).getProperties().getDate();
     setDate(mTime, holder);
   }
 
@@ -94,22 +90,22 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.DataViewHolder
 
   public class DataViewHolder extends RecyclerView.ViewHolder {
 
-    @BindView(R.id.text_view_place)
+    @BindView(R.id.tv_place)
     TextView place;
 
-    @BindView(R.id.text_view_magnitude)
+    @BindView(R.id.tv_magnitude)
     TextView magnitude;
 
-    @BindView(R.id.text_view_mag_type)
+    @BindView(R.id.tv_mag_type)
     TextView mag_type;
 
-    @BindView(R.id.text_view_alert)
+    @BindView(R.id.tv_alert)
     TextView alert;
 
-    @BindView(R.id.text_view_significance)
+    @BindView(R.id.tv_significance)
     TextView significance;
 
-    @BindView(R.id.text_view_date)
+    @BindView(R.id.tv_date)
     TextView date;
 
     public DataViewHolder(View view) {

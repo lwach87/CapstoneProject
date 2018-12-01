@@ -1,15 +1,15 @@
-package com.example.lukaszwachowski.capstoneproject.fragments.map;
+package com.example.lukaszwachowski.capstoneproject.ui.map;
 
 
+import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import com.example.lukaszwachowski.capstoneproject.EarthquakeApp;
-import com.example.lukaszwachowski.capstoneproject.fragments.CustomViewModelFactory;
-import com.example.lukaszwachowski.capstoneproject.network.model.Feature;
+import com.example.lukaszwachowski.capstoneproject.data.model.Feature;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.maps.android.clustering.ClusterManager;
+import dagger.android.support.AndroidSupportInjection;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -18,12 +18,12 @@ import javax.inject.Inject;
 public class MapFragment extends SupportMapFragment implements OnMapReadyCallback {
 
   @Inject
-  CustomViewModelFactory factory;
+  ViewModelProvider.Factory factory;
 
   private GoogleMap map;
-  private MapViewModel viewModel;
-  private CompositeDisposable disposable = new CompositeDisposable();
   private ClusterManager<MarkerItem> clusterManager;
+  private MapFragmentViewModel viewModel;
+  private CompositeDisposable disposable = new CompositeDisposable();
 
   @Override
   public void onMapReady(GoogleMap googleMap) {
@@ -41,9 +41,9 @@ public class MapFragment extends SupportMapFragment implements OnMapReadyCallbac
   public void onCreate(Bundle bundle) {
     super.onCreate(bundle);
 
-    ((EarthquakeApp) getActivity().getApplication()).getComponent().inject(this);
+    AndroidSupportInjection.inject(this);
 
-    viewModel = ViewModelProviders.of(this, factory).get(MapViewModel.class);
+    viewModel = ViewModelProviders.of(this, factory).get(MapFragmentViewModel.class);
   }
 
   private void getDataFromDatabase() {

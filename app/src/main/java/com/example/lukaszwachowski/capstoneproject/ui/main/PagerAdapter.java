@@ -1,13 +1,13 @@
-package com.example.lukaszwachowski.capstoneproject.ui;
+package com.example.lukaszwachowski.capstoneproject.ui.main;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import com.example.lukaszwachowski.capstoneproject.R;
-import com.example.lukaszwachowski.capstoneproject.fragments.details.DetailsFragment;
-import com.example.lukaszwachowski.capstoneproject.fragments.list.ListFragment;
-import com.example.lukaszwachowski.capstoneproject.fragments.map.MapFragment;
+import com.example.lukaszwachowski.capstoneproject.ui.details.DetailsFragment;
+import com.example.lukaszwachowski.capstoneproject.ui.list.ListFragment;
+import com.example.lukaszwachowski.capstoneproject.ui.map.MapFragment;
 
 public class PagerAdapter extends FragmentPagerAdapter {
 
