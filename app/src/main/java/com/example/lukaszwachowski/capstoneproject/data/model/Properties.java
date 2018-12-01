@@ -18,7 +18,7 @@ public class Properties implements Parcelable {
   private String magType;
   private String title;
 
-  public Properties(){
+  public Properties() {
 
   }
 

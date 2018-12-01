@@ -17,7 +17,6 @@ public class DataJobService extends JobService {
   public boolean onStartJob(JobParameters job) {
     dataSource.getDataFromService();
     jobFinished(job, false);
-
     return true;
   }
 

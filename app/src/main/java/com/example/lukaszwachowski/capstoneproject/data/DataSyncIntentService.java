@@ -5,6 +5,7 @@ import static com.example.lukaszwachowski.capstoneproject.helper.Constants.SYNC_
 import android.app.IntentService;
 import android.content.Intent;
 import android.support.annotation.Nullable;
+import dagger.android.AndroidInjection;
 import javax.inject.Inject;
 
 public class DataSyncIntentService extends IntentService {
@@ -19,7 +20,7 @@ public class DataSyncIntentService extends IntentService {
   @Override
   public void onCreate() {
     super.onCreate();
-//    ((EarthquakeApp) getApplication()).getComponent().inject(this);
+    AndroidInjection.inject(this);
   }
 
   @Override

@@ -1,7 +1,7 @@
 package com.example.lukaszwachowski.capstoneproject.helper;
 
 import android.support.v7.util.DiffUtil;
-import com.example.lukaszwachowski.capstoneproject.network.model.Feature;
+import com.example.lukaszwachowski.capstoneproject.data.model.Feature;
 import java.util.List;
 
 public class FeatureDiffUtil extends DiffUtil.Callback {
@@ -26,7 +26,7 @@ public class FeatureDiffUtil extends DiffUtil.Callback {
 
   @Override
   public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-    return oldList.get(oldItemPosition).id.equals(newList.get(newItemPosition).id);
+    return oldList.get(oldItemPosition).getId().equals(newList.get(newItemPosition).getId());
   }
 
   @Override

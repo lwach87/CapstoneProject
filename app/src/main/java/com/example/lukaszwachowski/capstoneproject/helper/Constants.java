@@ -1,6 +1,6 @@
 package com.example.lukaszwachowski.capstoneproject.helper;
 
-import com.example.lukaszwachowski.capstoneproject.network.NetworkDataSource;
+import com.example.lukaszwachowski.capstoneproject.data.NetworkDataSource;
 import java.util.concurrent.TimeUnit;
 
 public class Constants {

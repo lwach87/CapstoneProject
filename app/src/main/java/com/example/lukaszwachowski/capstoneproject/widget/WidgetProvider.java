@@ -7,8 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 import com.example.lukaszwachowski.capstoneproject.R;
-import com.example.lukaszwachowski.capstoneproject.network.model.Feature;
-import com.example.lukaszwachowski.capstoneproject.ui.MainActivity;
+import com.example.lukaszwachowski.capstoneproject.data.model.Feature;
+import com.example.lukaszwachowski.capstoneproject.ui.main.MainActivity;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
@@ -21,15 +21,15 @@ public class WidgetProvider extends AppWidgetProvider {
         new Intent(context, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
 
     RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.earthquake_app_widget);
-    views.setTextViewText(R.id.widget_title, feature.properties.title);
+    views.setTextViewText(R.id.widget_title, feature.getProperties().getTitle());
 
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
 
-    views.setTextViewText(R.id.widget_date, sdf.format(feature.properties.date));
-    views.setTextViewText(R.id.widget_magnitude, String.valueOf(feature.properties.mag));
-    views.setTextViewText(R.id.widget_magnitude_type, feature.properties.magType);
-    views.setTextViewText(R.id.widget_significance, String.valueOf(feature.properties.sig));
-    views.setTextViewText(R.id.widget_alert, String.valueOf(feature.properties.alert));
+    views.setTextViewText(R.id.widget_date, sdf.format(feature.getProperties().getDate()));
+    views.setTextViewText(R.id.widget_magnitude, String.valueOf(feature.getProperties().getMag()));
+    views.setTextViewText(R.id.widget_magnitude_type, feature.getProperties().getMagType());
+    views.setTextViewText(R.id.widget_significance, String.valueOf(feature.getProperties().getSig()));
+    views.setTextViewText(R.id.widget_alert, String.valueOf(feature.getProperties().getAlert()));
     views.setOnClickPendingIntent(R.id.feature_widget_holder, pendingIntent);
 
     appWidgetManager.updateAppWidget(appWidgetId, views);

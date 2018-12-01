@@ -9,7 +9,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import com.example.lukaszwachowski.capstoneproject.network.model.Feature;
+import com.example.lukaszwachowski.capstoneproject.data.model.Feature;
 
 public class WidgetService extends IntentService {
 

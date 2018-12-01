@@ -2,7 +2,6 @@ package com.example.lukaszwachowski.capstoneproject.data.local;
 
 import android.arch.lifecycle.LiveData;
 import com.example.lukaszwachowski.capstoneproject.data.NetworkDataSource;
-import com.example.lukaszwachowski.capstoneproject.data.local.ModelDao;
 import com.example.lukaszwachowski.capstoneproject.data.model.Feature;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
