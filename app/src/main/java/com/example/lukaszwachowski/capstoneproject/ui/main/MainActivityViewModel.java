@@ -1,19 +1,31 @@
 package com.example.lukaszwachowski.capstoneproject.ui.main;
 
-import android.arch.lifecycle.ViewModel;
-import com.example.lukaszwachowski.capstoneproject.data.local.Repository;
+import android.arch.lifecycle.MutableLiveData;
+import com.example.lukaszwachowski.capstoneproject.data.DataManager;
 import com.example.lukaszwachowski.capstoneproject.data.model.Feature;
-import io.reactivex.Single;
+import com.example.lukaszwachowski.capstoneproject.ui.base.BaseViewModel;
+import com.example.lukaszwachowski.capstoneproject.utils.rx.SchedulerProvider;
 
-public class MainActivityViewModel extends ViewModel {
+public class MainActivityViewModel extends BaseViewModel {
 
-  private Repository repository;
+  private MutableLiveData<Feature> featureLiveData;
 
-  public MainActivityViewModel(Repository repository) {
-    this.repository = repository;
+  public MainActivityViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
+    super(dataManager, schedulerProvider);
+    featureLiveData = new MutableLiveData<>();
   }
 
-  public Single<Feature> getFeatureBySig() {
-    return repository.getFeatureBySig();
+  public void getMaxSigFeature() {
+    getDisposable()
+        .add(getDataManager()
+            .getDbHelper()
+            .getFeatureBySig()
+            .subscribeOn(getSchedulerProvider().io())
+            .observeOn(getSchedulerProvider().ui())
+            .subscribe(feature -> featureLiveData.setValue(feature)));
+  }
+
+  public MutableLiveData<Feature> getFeatureLiveData() {
+    return featureLiveData;
   }
 }

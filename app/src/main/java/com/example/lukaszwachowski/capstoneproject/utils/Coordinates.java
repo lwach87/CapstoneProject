@@ -1,4 +1,4 @@
-package com.example.lukaszwachowski.capstoneproject.helper;
+package com.example.lukaszwachowski.capstoneproject.utils;
 
 public class Coordinates {
 

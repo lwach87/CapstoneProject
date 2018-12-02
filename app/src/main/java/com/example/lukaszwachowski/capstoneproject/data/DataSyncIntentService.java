@@ -1,6 +1,6 @@
 package com.example.lukaszwachowski.capstoneproject.data;
 
-import static com.example.lukaszwachowski.capstoneproject.helper.Constants.SYNC_SERVICE;
+import static com.example.lukaszwachowski.capstoneproject.utils.Constants.SYNC_SERVICE;
 
 import android.app.IntentService;
 import android.content.Intent;
@@ -11,7 +11,7 @@ import javax.inject.Inject;
 public class DataSyncIntentService extends IntentService {
 
   @Inject
-  NetworkDataSource dataSource;
+  DataManager dataManager;
 
   public DataSyncIntentService() {
     super(SYNC_SERVICE);
@@ -25,6 +25,6 @@ public class DataSyncIntentService extends IntentService {
 
   @Override
   protected void onHandleIntent(@Nullable Intent intent) {
-    dataSource.getDataFromService();
+    dataManager.syncData();
   }
 }

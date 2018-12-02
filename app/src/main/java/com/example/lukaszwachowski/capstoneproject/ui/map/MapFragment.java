@@ -10,9 +10,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.maps.android.clustering.ClusterManager;
 import dagger.android.support.AndroidSupportInjection;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.schedulers.Schedulers;
 import javax.inject.Inject;
 
 public class MapFragment extends SupportMapFragment implements OnMapReadyCallback {
@@ -23,7 +20,6 @@ public class MapFragment extends SupportMapFragment implements OnMapReadyCallbac
   private GoogleMap map;
   private ClusterManager<MarkerItem> clusterManager;
   private MapFragmentViewModel viewModel;
-  private CompositeDisposable disposable = new CompositeDisposable();
 
   @Override
   public void onMapReady(GoogleMap googleMap) {
@@ -34,7 +30,9 @@ public class MapFragment extends SupportMapFragment implements OnMapReadyCallbac
 
     clusterManager = new ClusterManager<>(getContext(), map);
     map.setOnCameraIdleListener(clusterManager);
-    getDataFromDatabase();
+
+    viewModel.getFeatures();
+    subscribeToLiveData();
   }
 
   @Override
@@ -46,30 +44,20 @@ public class MapFragment extends SupportMapFragment implements OnMapReadyCallbac
     viewModel = ViewModelProviders.of(this, factory).get(MapFragmentViewModel.class);
   }
 
-  private void getDataFromDatabase() {
-    disposable.add(viewModel.getFeatures()
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(features -> {
-          for (Feature feature : features) {
-            MarkerItem markerItem = new MarkerItem(feature);
-            clusterManager.addItem(markerItem);
-          }
-        }));
+  private void subscribeToLiveData() {
+    viewModel.getFeaturesLiveData().observe(this, features -> {
+      for (Feature feature : features) {
+        MarkerItem markerItem = new MarkerItem(feature);
+        clusterManager.addItem(markerItem);
+      }
+    });
   }
 
   @Override
   public void onStart() {
     super.onStart();
-
     if (map == null) {
       getMapAsync(this);
     }
-  }
-
-  @Override
-  public void onDestroy() {
-    super.onDestroy();
-    disposable.clear();
   }
 }

@@ -8,14 +8,14 @@ import javax.inject.Inject;
 public class DataJobService extends JobService {
 
   @Inject
-  NetworkDataSource dataSource;
+  DataManager dataManager;
 
   public DataJobService() {
   }
 
   @Override
   public boolean onStartJob(JobParameters job) {
-    dataSource.getDataFromService();
+    dataManager.syncData().subscribe();
     jobFinished(job, false);
     return true;
   }

@@ -1,20 +1,32 @@
 package com.example.lukaszwachowski.capstoneproject.ui.details;
 
-import android.arch.lifecycle.ViewModel;
-import com.example.lukaszwachowski.capstoneproject.data.local.Repository;
+import android.arch.lifecycle.MutableLiveData;
+import com.example.lukaszwachowski.capstoneproject.data.DataManager;
 import com.example.lukaszwachowski.capstoneproject.data.model.Feature;
-import io.reactivex.Flowable;
+import com.example.lukaszwachowski.capstoneproject.ui.base.BaseViewModel;
+import com.example.lukaszwachowski.capstoneproject.utils.rx.SchedulerProvider;
 import java.util.List;
 
-public class DetailsFragmentViewModel extends ViewModel {
+public class DetailsFragmentViewModel extends BaseViewModel {
 
-  private Repository repository;
+  private MutableLiveData<List<Feature>> featuresLiveData;
 
-  public DetailsFragmentViewModel(Repository repository) {
-    this.repository = repository;
+  public DetailsFragmentViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
+    super(dataManager, schedulerProvider);
+    featuresLiveData = new MutableLiveData<>();
   }
 
-  public Flowable<List<Feature>> getFeatures() {
-    return repository.getFeatures();
+  public void getFeatures() {
+    getDisposable()
+        .add(getDataManager()
+            .getDbHelper()
+            .getFeatures()
+            .subscribeOn(getSchedulerProvider().io())
+            .observeOn(getSchedulerProvider().ui())
+            .subscribe(features -> featuresLiveData.setValue(features)));
+  }
+
+  public MutableLiveData<List<Feature>> getFeaturesLiveData() {
+    return featuresLiveData;
   }
 }

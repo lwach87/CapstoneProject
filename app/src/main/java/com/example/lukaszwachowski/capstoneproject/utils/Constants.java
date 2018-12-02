@@ -1,6 +1,6 @@
-package com.example.lukaszwachowski.capstoneproject.helper;
+package com.example.lukaszwachowski.capstoneproject.utils;
 
-import com.example.lukaszwachowski.capstoneproject.data.NetworkDataSource;
+import com.example.lukaszwachowski.capstoneproject.data.DataManager;
 import java.util.concurrent.TimeUnit;
 
 public class Constants {
@@ -14,7 +14,7 @@ public class Constants {
   public static final String FEATURE_WIDGET_DATA = "com.example.lukaszwachowski.capstoneproject.feature_widget_data";
   public static final String WIDGET_SERVICE = "WidgetService";
 
-  public static final String DATA_TAG = NetworkDataSource.class.getSimpleName();
+  public static final String DATA_TAG = DataManager.class.getSimpleName();
   private static final int SYNC_INTERVAL_HOURS = 3;
   public static final int SYNC_INTERVAL_SECONDS = (int) TimeUnit.HOURS
       .toSeconds(SYNC_INTERVAL_HOURS);

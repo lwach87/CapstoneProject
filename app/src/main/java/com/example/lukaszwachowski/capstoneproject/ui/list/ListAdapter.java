@@ -13,7 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.example.lukaszwachowski.capstoneproject.R;
 import com.example.lukaszwachowski.capstoneproject.data.model.Feature;
-import com.example.lukaszwachowski.capstoneproject.helper.FeatureDiffUtil;
+import com.example.lukaszwachowski.capstoneproject.utils.FeatureDiffUtil;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
