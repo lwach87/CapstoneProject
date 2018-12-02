@@ -1,6 +1,6 @@
 package com.example.lukaszwachowski.capstoneproject.data.model;
 
-import static com.example.lukaszwachowski.capstoneproject.helper.Constants.TABLE_NAME;
+import static com.example.lukaszwachowski.capstoneproject.utils.Constants.TABLE_NAME;
 
 import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.Entity;
