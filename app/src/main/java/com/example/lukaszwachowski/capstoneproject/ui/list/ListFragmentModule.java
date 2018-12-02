@@ -3,7 +3,8 @@ package com.example.lukaszwachowski.capstoneproject.ui.list;
 import android.arch.lifecycle.ViewModelProvider;
 import android.content.Context;
 import com.example.lukaszwachowski.capstoneproject.ViewModelProviderFactory;
-import com.example.lukaszwachowski.capstoneproject.data.local.Repository;
+import com.example.lukaszwachowski.capstoneproject.data.DataManager;
+import com.example.lukaszwachowski.capstoneproject.utils.rx.SchedulerProvider;
 import dagger.Module;
 import dagger.Provides;
 
@@ -16,8 +17,8 @@ public class ListFragmentModule {
   }
 
   @Provides
-  ListFragmentViewModel provideListFragmentViewModel(Repository repository) {
-    return new ListFragmentViewModel(repository);
+  ListFragmentViewModel provideListFragmentViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
+    return new ListFragmentViewModel(dataManager, schedulerProvider);
   }
 
   @Provides

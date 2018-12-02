@@ -2,7 +2,8 @@ package com.example.lukaszwachowski.capstoneproject.ui.main;
 
 import android.arch.lifecycle.ViewModelProvider;
 import com.example.lukaszwachowski.capstoneproject.ViewModelProviderFactory;
-import com.example.lukaszwachowski.capstoneproject.data.local.Repository;
+import com.example.lukaszwachowski.capstoneproject.data.DataManager;
+import com.example.lukaszwachowski.capstoneproject.utils.rx.SchedulerProvider;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Named;
@@ -11,8 +12,8 @@ import javax.inject.Named;
 public class MainActivityModule {
 
   @Provides
-  MainActivityViewModel provideMainViewModel(Repository repository) {
-    return new MainActivityViewModel(repository);
+  MainActivityViewModel provideMainViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
+    return new MainActivityViewModel(dataManager, schedulerProvider);
   }
 
   @Provides

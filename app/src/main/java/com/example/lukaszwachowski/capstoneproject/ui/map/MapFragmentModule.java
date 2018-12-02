@@ -2,7 +2,8 @@ package com.example.lukaszwachowski.capstoneproject.ui.map;
 
 import android.arch.lifecycle.ViewModelProvider;
 import com.example.lukaszwachowski.capstoneproject.ViewModelProviderFactory;
-import com.example.lukaszwachowski.capstoneproject.data.local.Repository;
+import com.example.lukaszwachowski.capstoneproject.data.DataManager;
+import com.example.lukaszwachowski.capstoneproject.utils.rx.SchedulerProvider;
 import dagger.Module;
 import dagger.Provides;
 
@@ -10,8 +11,8 @@ import dagger.Provides;
 public class MapFragmentModule {
 
   @Provides
-  MapFragmentViewModel provideMapFragmentViewModel(Repository repository) {
-    return new MapFragmentViewModel(repository);
+  MapFragmentViewModel provideMapFragmentViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
+    return new MapFragmentViewModel(dataManager, schedulerProvider);
   }
 
   @Provides

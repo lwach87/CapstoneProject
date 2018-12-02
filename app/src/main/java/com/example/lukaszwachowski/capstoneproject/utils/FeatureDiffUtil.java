@@ -1,4 +1,4 @@
-package com.example.lukaszwachowski.capstoneproject.helper;
+package com.example.lukaszwachowski.capstoneproject.utils;
 
 import android.support.v7.util.DiffUtil;
 import com.example.lukaszwachowski.capstoneproject.data.model.Feature;

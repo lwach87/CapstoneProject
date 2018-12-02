@@ -1,8 +1,8 @@
 package com.example.lukaszwachowski.capstoneproject.widget;
 
-import static com.example.lukaszwachowski.capstoneproject.helper.Constants.FEATURE_WIDGET_ACTION_UPDATE;
-import static com.example.lukaszwachowski.capstoneproject.helper.Constants.FEATURE_WIDGET_DATA;
-import static com.example.lukaszwachowski.capstoneproject.helper.Constants.WIDGET_SERVICE;
+import static com.example.lukaszwachowski.capstoneproject.utils.Constants.FEATURE_WIDGET_ACTION_UPDATE;
+import static com.example.lukaszwachowski.capstoneproject.utils.Constants.FEATURE_WIDGET_DATA;
+import static com.example.lukaszwachowski.capstoneproject.utils.Constants.WIDGET_SERVICE;
 
 import android.app.IntentService;
 import android.appwidget.AppWidgetManager;

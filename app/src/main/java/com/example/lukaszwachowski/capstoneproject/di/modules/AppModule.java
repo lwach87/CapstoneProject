@@ -1,20 +1,25 @@
 package com.example.lukaszwachowski.capstoneproject.di.modules;
 
-import static com.example.lukaszwachowski.capstoneproject.helper.Constants.DATABASE_NAME;
-import static com.example.lukaszwachowski.capstoneproject.helper.Constants.URL;
+import static com.example.lukaszwachowski.capstoneproject.utils.Constants.DATABASE_NAME;
+import static com.example.lukaszwachowski.capstoneproject.utils.Constants.URL;
 
 import android.app.Application;
 import android.arch.persistence.room.Room;
 import android.content.Context;
+import com.example.lukaszwachowski.capstoneproject.data.DataManager;
+import com.example.lukaszwachowski.capstoneproject.data.local.AppDbHelper;
+import com.example.lukaszwachowski.capstoneproject.data.local.DbHelper;
 import com.example.lukaszwachowski.capstoneproject.data.local.ModelDao;
 import com.example.lukaszwachowski.capstoneproject.data.local.ModelDatabase;
-import com.example.lukaszwachowski.capstoneproject.data.local.Repository;
 import com.example.lukaszwachowski.capstoneproject.data.remote.ApiHelper;
-import com.example.lukaszwachowski.capstoneproject.data.NetworkDataSource;
+import com.example.lukaszwachowski.capstoneproject.ui.main.MainActivity;
+import com.example.lukaszwachowski.capstoneproject.utils.rx.AppSchedulerProvider;
+import com.example.lukaszwachowski.capstoneproject.utils.rx.SchedulerProvider;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
@@ -45,6 +50,7 @@ public class AppModule {
     return new Retrofit.Builder()
         .baseUrl(URL)
         .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build();
   }
 
@@ -56,13 +62,18 @@ public class AppModule {
 
   @Provides
   @Singleton
-  NetworkDataSource provideDataSource(ApiHelper apiHelper, Context context) {
-    return new NetworkDataSource(apiHelper, context);
+  DbHelper provideDbHelper(AppDbHelper appDbHelper) {
+    return appDbHelper;
   }
 
   @Provides
   @Singleton
-  Repository provideRepository(ModelDao modelDao, NetworkDataSource dataSource) {
-    return new Repository(modelDao, dataSource);
+  DataManager provideDataManager(ApiHelper apiHelper, DbHelper dbHelper, Context context) {
+    return new DataManager(apiHelper, dbHelper, context);
+  }
+
+  @Provides
+  SchedulerProvider provideSchedulerProvider() {
+    return new AppSchedulerProvider();
   }
 }

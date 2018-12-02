@@ -1,4 +1,4 @@
-package com.example.lukaszwachowski.capstoneproject.helper;
+package com.example.lukaszwachowski.capstoneproject.utils;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
