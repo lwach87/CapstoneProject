@@ -52,6 +52,9 @@ public class DetailsFragment extends Fragment {
   private DetailsFragmentViewModel viewModel;
   private Map<String, Double> map = new HashMap<>();
 
+  public DetailsFragment() {
+  }
+
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

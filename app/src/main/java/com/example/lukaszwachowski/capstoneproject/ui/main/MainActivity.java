@@ -54,6 +54,10 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
     viewModel.getMaxSigFeature();
     subscribeToLiveData();
 
+    if (savedInstanceState == null) {
+      viewModel.getDataManager().initializeData();
+    }
+
     setSupportActionBar(toolbar);
     viewPager.setAdapter(pagerAdapter);
     viewPager.setOffscreenPageLimit(2);

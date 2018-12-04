@@ -30,6 +30,9 @@ public class ListFragment extends Fragment {
 
   private ListFragmentViewModel viewModel;
 
+  public ListFragment() {
+  }
+
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -46,9 +49,7 @@ public class ListFragment extends Fragment {
       Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_list, container, false);
     ButterKnife.bind(this, view);
-
     recyclerView.setAdapter(listAdapter);
-
     return view;
   }
 

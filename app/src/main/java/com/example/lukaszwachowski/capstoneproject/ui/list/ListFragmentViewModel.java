@@ -6,6 +6,7 @@ import com.example.lukaszwachowski.capstoneproject.data.model.Feature;
 import com.example.lukaszwachowski.capstoneproject.ui.base.BaseViewModel;
 import com.example.lukaszwachowski.capstoneproject.utils.rx.SchedulerProvider;
 import java.util.List;
+import timber.log.Timber;
 
 public class ListFragmentViewModel extends BaseViewModel {
 
@@ -23,7 +24,8 @@ public class ListFragmentViewModel extends BaseViewModel {
             .getFeatures()
             .subscribeOn(getSchedulerProvider().io())
             .observeOn(getSchedulerProvider().ui())
-            .subscribe(features -> featuresLiveData.setValue(features)));
+            .subscribe(features -> featuresLiveData.setValue(features),
+                error -> Timber.d("Error getting data: %s", error.getLocalizedMessage())));
   }
 
   public MutableLiveData<List<Feature>> getFeaturesLiveData() {

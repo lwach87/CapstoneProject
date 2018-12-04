@@ -15,7 +15,6 @@ public class BaseViewModel extends ViewModel {
     this.dataManager = dataManager;
     this.schedulerProvider = schedulerProvider;
     disposable = new CompositeDisposable();
-    dataManager.initializeData();
   }
 
   @Override
