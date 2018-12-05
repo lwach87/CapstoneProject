@@ -3,11 +3,8 @@ package com.example.lukaszwachowski.capstoneproject.data;
 
 import com.firebase.jobdispatcher.JobParameters;
 import com.firebase.jobdispatcher.JobService;
-import io.reactivex.CompletableObserver;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
+import dagger.android.AndroidInjection;
 import javax.inject.Inject;
-import timber.log.Timber;
 
 public class DataJobService extends JobService {
 
@@ -19,24 +16,15 @@ public class DataJobService extends JobService {
 
   @Override
   public boolean onStartJob(JobParameters job) {
-    dataManager.syncData().subscribe(new CompletableObserver() {
-      @Override
-      public void onSubscribe(@NonNull Disposable d) {
-        Timber.d("Sync started...");
-      }
-
-      @Override
-      public void onComplete() {
-        Timber.d("Sync finished...");
-        jobFinished(job, false);
-      }
-
-      @Override
-      public void onError(@NonNull Throwable e) {
-        Timber.d("Sync failed! Error: %s", e.getMessage());
-      }
-    });
+    dataManager.syncData();
+    jobFinished(job, false);
     return true;
+  }
+
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    AndroidInjection.inject(this);
   }
 
   @Override

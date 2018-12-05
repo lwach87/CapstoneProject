@@ -16,8 +16,12 @@ import com.firebase.jobdispatcher.Job;
 import com.firebase.jobdispatcher.Lifetime;
 import com.firebase.jobdispatcher.Trigger;
 import io.reactivex.Completable;
+import io.reactivex.CompletableObserver;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import java.util.Calendar;
+import timber.log.Timber;
 
 public class DataManager {
 
@@ -38,18 +42,13 @@ public class DataManager {
 
   public void initializeData() {
 
-    // Only perform initialization once per app lifetime. If initialization has already been
-    // performed, we have nothing to do in this method.
     if (initialized) {
       return;
     }
     initialized = true;
 
-    // This method call triggers to create its task to synchronize earthquake data
-    // periodically.
     scheduleRecurringFetchDataSync();
 
-    //Starts an intent service which fetches the network data
     Completable.fromAction(this::startFetchService)
         .subscribeOn(Schedulers.io())
         .subscribe();
@@ -85,8 +84,8 @@ public class DataManager {
     dispatcher.schedule(syncJob);
   }
 
-  public Completable syncData() {
-    return apiHelper.getData()
+  public void syncData() {
+    apiHelper.getData()
         .subscribeOn(Schedulers.io())
         .flatMapCompletable(model -> Completable.create(emitter -> {
 
@@ -97,6 +96,21 @@ public class DataManager {
               pastDate.add(Calendar.DAY_OF_YEAR, -30);
               dbHelper.deleteFeature(pastDate.getTimeInMillis());
             })
-        );
+        ).subscribe(new CompletableObserver() {
+      @Override
+      public void onSubscribe(@NonNull Disposable d) {
+        Timber.d("Sync started...");
+      }
+
+      @Override
+      public void onComplete() {
+        Timber.d("Sync finished...");
+      }
+
+      @Override
+      public void onError(@NonNull Throwable e) {
+        Timber.d("Sync failed! Error: %s", e.getMessage());
+      }
+    });
   }
 }

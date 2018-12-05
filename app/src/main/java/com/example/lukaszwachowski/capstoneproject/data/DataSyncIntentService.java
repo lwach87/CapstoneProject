@@ -6,12 +6,9 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import dagger.android.AndroidInjection;
-import io.reactivex.CompletableObserver;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
 import javax.inject.Inject;
-import timber.log.Timber;
 
+//Job dispatcher will not trigger a job immediately. This should be called when the application is on the screen
 public class DataSyncIntentService extends IntentService {
 
   @Inject
@@ -29,21 +26,6 @@ public class DataSyncIntentService extends IntentService {
 
   @Override
   protected void onHandleIntent(@Nullable Intent intent) {
-    dataManager.syncData().subscribe(new CompletableObserver() {
-      @Override
-      public void onSubscribe(@NonNull Disposable d) {
-        Timber.d("Sync started...");
-      }
-
-      @Override
-      public void onComplete() {
-        Timber.d("Sync finished...");
-      }
-
-      @Override
-      public void onError(@NonNull Throwable e) {
-        Timber.d("Sync failed! Error: %s", e.getMessage());
-      }
-    });
+    dataManager.syncData();
   }
 }
