@@ -44,11 +44,10 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    AndroidInjection.inject(this);
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     ButterKnife.bind(this);
-
-    AndroidInjection.inject(this);
 
     viewModel = ViewModelProviders.of(this, factory).get(MainActivityViewModel.class);
     viewModel.getMaxSigFeature();

@@ -32,6 +32,7 @@ public class EarthquakeApp extends Application implements HasActivityInjector, H
   public void onCreate() {
     super.onCreate();
 
+    //Inject Application into app component
     DaggerAppComponent
         .builder()
         .application(this)

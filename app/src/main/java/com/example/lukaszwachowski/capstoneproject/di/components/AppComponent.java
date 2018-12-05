@@ -10,6 +10,8 @@ import dagger.Component;
 import dagger.android.AndroidInjectionModule;
 import javax.inject.Singleton;
 
+//Component will provide injected instances by using modules
+//AndroidInjectionModule - internal class, provides activities and fragments with given module
 @Singleton
 @Component(modules = {AndroidInjectionModule.class, AppModule.class, ActivityBuilder.class,
     DataServiceBuilder.class})
@@ -17,6 +19,7 @@ public interface AppComponent {
 
   void inject(EarthquakeApp app);
 
+  //Bind Application to component
   @Component.Builder
   interface Builder {
 

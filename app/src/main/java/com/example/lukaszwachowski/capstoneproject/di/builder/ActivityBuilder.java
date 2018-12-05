@@ -8,9 +8,11 @@ import com.example.lukaszwachowski.capstoneproject.ui.main.MainActivity;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
+//We map all activities here
 @Module
 public abstract class ActivityBuilder {
 
+  //Perform members-injection on Activities, Fragments constructed not by dagger
   @ContributesAndroidInjector(modules = {MainActivityModule.class, DetailsFragmentProvider.class,
       ListFragmentProvider.class, MapFragmentProvider.class})
   abstract MainActivity bindMainActivity();
