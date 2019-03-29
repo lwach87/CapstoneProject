@@ -1,12 +1,18 @@
 package com.example.lukaszwachowski.capstoneproject.data;
 
+import static android.content.Context.MODE_PRIVATE;
 import static com.example.lukaszwachowski.capstoneproject.utils.Constants.DATA_TAG;
+import static com.example.lukaszwachowski.capstoneproject.utils.Constants.PREFS_INITIALIZED;
+import static com.example.lukaszwachowski.capstoneproject.utils.Constants.PREFS_NAME;
 import static com.example.lukaszwachowski.capstoneproject.utils.Constants.SYNC_FLEXTIME_SECONDS;
 import static com.example.lukaszwachowski.capstoneproject.utils.Constants.SYNC_INTERVAL_SECONDS;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.util.Log;
 import com.example.lukaszwachowski.capstoneproject.data.local.DbHelper;
+import com.example.lukaszwachowski.capstoneproject.data.model.Feature;
 import com.example.lukaszwachowski.capstoneproject.data.remote.ApiHelper;
 import com.firebase.jobdispatcher.Constraint;
 import com.firebase.jobdispatcher.Driver;
@@ -28,7 +34,6 @@ public class DataManager {
   private ApiHelper apiHelper;
   private DbHelper dbHelper;
   private Context context;
-  private boolean initialized = false;
 
   public DataManager(ApiHelper apiHelper, DbHelper dbHelper, Context context) {
     this.apiHelper = apiHelper;
@@ -41,17 +46,23 @@ public class DataManager {
   }
 
   public void initializeData() {
+    SharedPreferences preferences = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
-    if (initialized) {
+    Log.d("Debugger", String.valueOf(preferences.getBoolean("initialized", false)));
+
+    if (preferences.getBoolean(PREFS_INITIALIZED, false)) {
       return;
     }
-    initialized = true;
-
-    scheduleRecurringFetchDataSync();
 
     Completable.fromAction(this::startFetchService)
         .subscribeOn(Schedulers.io())
         .subscribe();
+
+    scheduleRecurringFetchDataSync();
+
+    SharedPreferences.Editor editor = preferences.edit();
+    editor.putBoolean(PREFS_INITIALIZED, true);
+    editor.apply();
   }
 
   /**
@@ -88,6 +99,10 @@ public class DataManager {
     apiHelper.getData()
         .subscribeOn(Schedulers.io())
         .flatMapCompletable(model -> Completable.create(emitter -> {
+
+              for (Feature feature : model.getFeatures()) {
+                Log.d("Debugger", feature.getProperties().getPlace());
+              }
 
               dbHelper.insertFeatures(model.getFeatures());
 

@@ -5,6 +5,7 @@ import static com.example.lukaszwachowski.capstoneproject.utils.Constants.SYNC_S
 import android.app.IntentService;
 import android.content.Intent;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import dagger.android.AndroidInjection;
 import javax.inject.Inject;
 
@@ -26,6 +27,7 @@ public class DataSyncIntentService extends IntentService {
 
   @Override
   protected void onHandleIntent(@Nullable Intent intent) {
+    Log.d("Debugger", "SERVICE STARTED");
     dataManager.syncData();
   }
 }

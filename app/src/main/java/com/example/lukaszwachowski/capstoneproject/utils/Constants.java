@@ -9,6 +9,8 @@ public class Constants {
   public static final String SYNC_SERVICE = "DataSyncIntentService";
   public static final String DATABASE_NAME = "features";
   public static final String TABLE_NAME = "feature";
+  public static final String PREFS_NAME = "view.prefs";
+  public static final String PREFS_INITIALIZED = "initialized";
 
   public static final String FEATURE_WIDGET_ACTION_UPDATE = "com.example.lukaszwachowski.capstoneproject.action.update";
   public static final String FEATURE_WIDGET_DATA = "com.example.lukaszwachowski.capstoneproject.feature_widget_data";

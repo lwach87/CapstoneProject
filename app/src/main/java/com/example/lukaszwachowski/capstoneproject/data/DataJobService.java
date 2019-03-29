@@ -1,6 +1,7 @@
 package com.example.lukaszwachowski.capstoneproject.data;
 
 
+import android.util.Log;
 import com.firebase.jobdispatcher.JobParameters;
 import com.firebase.jobdispatcher.JobService;
 import dagger.android.AndroidInjection;
@@ -16,6 +17,7 @@ public class DataJobService extends JobService {
 
   @Override
   public boolean onStartJob(JobParameters job) {
+    Log.d("Debugger", "FIREBASE STARTED");
     dataManager.syncData();
     jobFinished(job, false);
     return true;
