@@ -50,7 +50,6 @@ public class DetailsFragment extends Fragment {
   WebView webView;
 
   private DetailsFragmentViewModel viewModel;
-  private Map<String, Double> map = new HashMap<>();
 
   public DetailsFragment() {
   }
@@ -112,21 +111,24 @@ public class DetailsFragment extends Fragment {
   @SuppressLint("SetJavaScriptEnabled")
   private void addDataToView(double lat, double lon) {
     viewModel.getFeaturesLiveData().observe(this, features -> {
-      for (Feature feature : features) {
-        map.put(feature.getId(), distance(lat, lon, feature.getGeometry().getCoordinates().get(1),
-            feature.getGeometry().getCoordinates().get(0)));
-      }
-      Map<String, Double> result = sortByValue(map);
-      String[] array = String.valueOf(result.entrySet().iterator().next()).split("=");
+      if(features != null) {
+        Map<String, Double> map = new HashMap<>();
+        for (Feature feature : features) {
+          map.put(feature.getId(), distance(lat, lon, feature.getGeometry().getCoordinates().get(1),
+                  feature.getGeometry().getCoordinates().get(0)));
+        }
+        Map<String, Double> result = sortByValue(map);
+        String[] array = String.valueOf(result.entrySet().iterator().next()).split("=");
 
-      distance.setText(String.valueOf((int) Double.parseDouble(array[1])));
+        distance.setText(String.valueOf((int) Double.parseDouble(array[1])));
 
-      for (Feature feature : features) {
-        if (feature.getId().equals(array[0])) {
-          webView.getSettings().setJavaScriptEnabled(true);
-          webView.setWebViewClient(new WebViewClient());
-          webView.getSettings().setLoadsImagesAutomatically(true);
-          webView.loadUrl(feature.getProperties().getUrl());
+        for (Feature feature : features) {
+          if (feature.getId().equals(array[0])) {
+            webView.getSettings().setJavaScriptEnabled(true);
+            webView.setWebViewClient(new WebViewClient());
+            webView.getSettings().setLoadsImagesAutomatically(true);
+            webView.loadUrl(feature.getProperties().getUrl());
+          }
         }
       }
     });
